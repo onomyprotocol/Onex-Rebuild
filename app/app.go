@@ -68,7 +68,9 @@ import (
 	ibcconsumerkeeper "github.com/cosmos/interchain-security/v3/x/ccv/consumer/keeper"
 	ibcconsumertypes "github.com/cosmos/interchain-security/v3/x/ccv/consumer/types"
 
+	denommodulekeeper "onex/x/denom/keeper"
 	marketmodulekeeper "onex/x/market/keeper"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"onex/docs"
@@ -130,6 +132,7 @@ type App struct {
 	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 
 	MarketKeeper marketmodulekeeper.Keeper
+	DenomKeeper  denommodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -253,6 +256,7 @@ func New(
 		&app.GroupKeeper,
 		&app.CircuitBreakerKeeper,
 		&app.MarketKeeper,
+		&app.DenomKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)

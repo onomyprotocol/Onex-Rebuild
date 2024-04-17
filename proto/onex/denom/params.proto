@@ -1,0 +1,15 @@
+syntax = "proto3";
+package onex.denom;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "onex/x/denom/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "onex/x/denom/Params";
+  option (gogoproto.equal) = true;
+
+  
+}

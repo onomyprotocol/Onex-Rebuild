@@ -7,6 +7,10 @@ import (
 	_ "onex/x/market/module" // import for side-effects
 	marketmoduletypes "onex/x/market/types"
 
+	denommodulev1 "onex/api/onex/denom/module"
+	_ "onex/x/denom/module" // import for side-effects
+	denommoduletypes "onex/x/denom/types"
+
 	runtimev1alpha1 "cosmossdk.io/api/cosmos/app/runtime/v1alpha1"
 	appv1alpha1 "cosmossdk.io/api/cosmos/app/v1alpha1"
 	authmodulev1 "cosmossdk.io/api/cosmos/auth/module/v1"
@@ -85,6 +89,7 @@ var (
 		ibcconsumertypes.ModuleName,
 		// chain modules
 		marketmoduletypes.ModuleName,
+		denommoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -108,6 +113,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		marketmoduletypes.ModuleName,
+		denommoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -126,6 +132,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		marketmoduletypes.ModuleName,
+		denommoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -145,6 +152,7 @@ var (
 		{Account: ibcfeetypes.ModuleName},
 		{Account: icatypes.ModuleName},
 		{Account: marketmoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
+		{Account: denommoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
 		// this line is used by starport scaffolding # stargate/app/maccPerms
 	}
 
@@ -257,6 +265,10 @@ var (
 			{
 				Name:   marketmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&marketmodulev1.Module{}),
+			},
+			{
+				Name:   denommoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&denommodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

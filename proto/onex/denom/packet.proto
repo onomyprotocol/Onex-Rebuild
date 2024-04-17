@@ -1,0 +1,13 @@
+syntax = "proto3";
+package onex.denom;
+
+option go_package = "onex/x/denom/types";
+
+message DenomPacketData {
+    oneof packet {
+        NoData noData = 1;
+    }
+}
+
+message NoData {
+}

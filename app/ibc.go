@@ -40,7 +40,10 @@ import (
 	ibcconsumerkeeper "github.com/cosmos/interchain-security/v3/x/ccv/consumer/keeper"
 	ibcconsumertypes "github.com/cosmos/interchain-security/v3/x/ccv/consumer/types"
 	ibcccvtypes "github.com/cosmos/interchain-security/v3/x/ccv/types"
+
 	// this line is used by starport scaffolding # ibc/app/import
+	denommodule "onex/x/denom/module"
+	denommoduletypes "onex/x/denom/types"
 )
 
 // registerIBCModules register IBC keepers and non dependency inject modules.
@@ -194,6 +197,8 @@ func (app *App) registerIBCModules(appOpts servertypes.AppOptions) error {
 		AddRoute(ibcccvtypes.ModuleName, consumerModule).
 		AddRoute(icahosttypes.SubModuleName, icaHostIBCModule)
 
+	denomIBCModule := ibcfee.NewIBCMiddleware(denommodule.NewIBCModule(app.DenomKeeper), app.IBCFeeKeeper)
+	ibcRouter.AddRoute(denommoduletypes.ModuleName, denomIBCModule)
 	// this line is used by starport scaffolding # ibc/app/module
 
 	app.IBCKeeper.SetRouter(ibcRouter)
