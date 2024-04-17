@@ -1,0 +1,15 @@
+syntax = "proto3";
+package onex.market;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "onex/x/market/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "onex/x/market/Params";
+  option (gogoproto.equal) = true;
+
+  
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+package onex.market;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "onex/market/params.proto";
+
+option go_package = "onex/x/market/types";
+
+// GenesisState defines the market module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
