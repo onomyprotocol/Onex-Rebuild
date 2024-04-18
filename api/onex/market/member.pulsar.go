@@ -3,7 +3,9 @@ package market
 
 import (
 	fmt "fmt"
+	_ "github.com/cosmos/cosmos-proto"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
+	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -15,8 +17,8 @@ import (
 var (
 	md_Member          protoreflect.MessageDescriptor
 	fd_Member_pair     protoreflect.FieldDescriptor
-	fd_Member_denomA   protoreflect.FieldDescriptor
-	fd_Member_denomB   protoreflect.FieldDescriptor
+	fd_Member_denom_a  protoreflect.FieldDescriptor
+	fd_Member_denom_b  protoreflect.FieldDescriptor
 	fd_Member_balance  protoreflect.FieldDescriptor
 	fd_Member_previous protoreflect.FieldDescriptor
 	fd_Member_limit    protoreflect.FieldDescriptor
@@ -27,8 +29,8 @@ func init() {
 	file_onex_market_member_proto_init()
 	md_Member = File_onex_market_member_proto.Messages().ByName("Member")
 	fd_Member_pair = md_Member.Fields().ByName("pair")
-	fd_Member_denomA = md_Member.Fields().ByName("denomA")
-	fd_Member_denomB = md_Member.Fields().ByName("denomB")
+	fd_Member_denom_a = md_Member.Fields().ByName("denom_a")
+	fd_Member_denom_b = md_Member.Fields().ByName("denom_b")
 	fd_Member_balance = md_Member.Fields().ByName("balance")
 	fd_Member_previous = md_Member.Fields().ByName("previous")
 	fd_Member_limit = md_Member.Fields().ByName("limit")
@@ -108,13 +110,13 @@ func (x *fastReflection_Member) Range(f func(protoreflect.FieldDescriptor, proto
 	}
 	if x.DenomA != "" {
 		value := protoreflect.ValueOfString(x.DenomA)
-		if !f(fd_Member_denomA, value) {
+		if !f(fd_Member_denom_a, value) {
 			return
 		}
 	}
 	if x.DenomB != "" {
 		value := protoreflect.ValueOfString(x.DenomB)
-		if !f(fd_Member_denomB, value) {
+		if !f(fd_Member_denom_b, value) {
 			return
 		}
 	}
@@ -159,9 +161,9 @@ func (x *fastReflection_Member) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
 	case "onex.market.Member.pair":
 		return x.Pair != ""
-	case "onex.market.Member.denomA":
+	case "onex.market.Member.denom_a":
 		return x.DenomA != ""
-	case "onex.market.Member.denomB":
+	case "onex.market.Member.denom_b":
 		return x.DenomB != ""
 	case "onex.market.Member.balance":
 		return x.Balance != ""
@@ -189,9 +191,9 @@ func (x *fastReflection_Member) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "onex.market.Member.pair":
 		x.Pair = ""
-	case "onex.market.Member.denomA":
+	case "onex.market.Member.denom_a":
 		x.DenomA = ""
-	case "onex.market.Member.denomB":
+	case "onex.market.Member.denom_b":
 		x.DenomB = ""
 	case "onex.market.Member.balance":
 		x.Balance = ""
@@ -220,10 +222,10 @@ func (x *fastReflection_Member) Get(descriptor protoreflect.FieldDescriptor) pro
 	case "onex.market.Member.pair":
 		value := x.Pair
 		return protoreflect.ValueOfString(value)
-	case "onex.market.Member.denomA":
+	case "onex.market.Member.denom_a":
 		value := x.DenomA
 		return protoreflect.ValueOfString(value)
-	case "onex.market.Member.denomB":
+	case "onex.market.Member.denom_b":
 		value := x.DenomB
 		return protoreflect.ValueOfString(value)
 	case "onex.market.Member.balance":
@@ -260,9 +262,9 @@ func (x *fastReflection_Member) Set(fd protoreflect.FieldDescriptor, value proto
 	switch fd.FullName() {
 	case "onex.market.Member.pair":
 		x.Pair = value.Interface().(string)
-	case "onex.market.Member.denomA":
+	case "onex.market.Member.denom_a":
 		x.DenomA = value.Interface().(string)
-	case "onex.market.Member.denomB":
+	case "onex.market.Member.denom_b":
 		x.DenomB = value.Interface().(string)
 	case "onex.market.Member.balance":
 		x.Balance = value.Interface().(string)
@@ -294,10 +296,10 @@ func (x *fastReflection_Member) Mutable(fd protoreflect.FieldDescriptor) protore
 	switch fd.FullName() {
 	case "onex.market.Member.pair":
 		panic(fmt.Errorf("field pair of message onex.market.Member is not mutable"))
-	case "onex.market.Member.denomA":
-		panic(fmt.Errorf("field denomA of message onex.market.Member is not mutable"))
-	case "onex.market.Member.denomB":
-		panic(fmt.Errorf("field denomB of message onex.market.Member is not mutable"))
+	case "onex.market.Member.denom_a":
+		panic(fmt.Errorf("field denom_a of message onex.market.Member is not mutable"))
+	case "onex.market.Member.denom_b":
+		panic(fmt.Errorf("field denom_b of message onex.market.Member is not mutable"))
 	case "onex.market.Member.balance":
 		panic(fmt.Errorf("field balance of message onex.market.Member is not mutable"))
 	case "onex.market.Member.previous":
@@ -321,9 +323,9 @@ func (x *fastReflection_Member) NewField(fd protoreflect.FieldDescriptor) protor
 	switch fd.FullName() {
 	case "onex.market.Member.pair":
 		return protoreflect.ValueOfString("")
-	case "onex.market.Member.denomA":
+	case "onex.market.Member.denom_a":
 		return protoreflect.ValueOfString("")
-	case "onex.market.Member.denomB":
+	case "onex.market.Member.denom_b":
 		return protoreflect.ValueOfString("")
 	case "onex.market.Member.balance":
 		return protoreflect.ValueOfString("")
@@ -797,14 +799,16 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Member defines the parameters for a member of a pair for pool.
 type Member struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Pair     string `protobuf:"bytes,1,opt,name=pair,proto3" json:"pair,omitempty"`
-	DenomA   string `protobuf:"bytes,2,opt,name=denomA,proto3" json:"denomA,omitempty"`
-	DenomB   string `protobuf:"bytes,3,opt,name=denomB,proto3" json:"denomB,omitempty"`
+	Pair   string `protobuf:"bytes,1,opt,name=pair,proto3" json:"pair,omitempty"`
+	DenomA string `protobuf:"bytes,2,opt,name=denom_a,json=denomA,proto3" json:"denom_a,omitempty"`
+	DenomB string `protobuf:"bytes,3,opt,name=denom_b,json=denomB,proto3" json:"denom_b,omitempty"`
+	// Member Balance of denom b
 	Balance  string `protobuf:"bytes,4,opt,name=balance,proto3" json:"balance,omitempty"`
 	Previous string `protobuf:"bytes,5,opt,name=previous,proto3" json:"previous,omitempty"`
 	Limit    uint64 `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
@@ -885,13 +889,19 @@ var File_onex_market_member_proto protoreflect.FileDescriptor
 var file_onex_market_member_proto_rawDesc = []byte{
 	0x0a, 0x18, 0x6f, 0x6e, 0x65, 0x78, 0x2f, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x74, 0x2f, 0x6d, 0x65,
 	0x6d, 0x62, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x6f, 0x6e, 0x65, 0x78,
-	0x2e, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x74, 0x22, 0xac, 0x01, 0x0a, 0x06, 0x4d, 0x65, 0x6d, 0x62,
-	0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x69, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x04, 0x70, 0x61, 0x69, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x41,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x41, 0x12, 0x16,
-	0x0a, 0x06, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x42, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
-	0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x42, 0x12, 0x18, 0x0a, 0x07, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63,
-	0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65,
+	0x2e, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x74, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xdb, 0x01, 0x0a, 0x06, 0x4d, 0x65, 0x6d,
+	0x62, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x69, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x04, 0x70, 0x61, 0x69, 0x72, 0x12, 0x17, 0x0a, 0x07, 0x64, 0x65, 0x6e, 0x6f, 0x6d,
+	0x5f, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x41,
+	0x12, 0x17, 0x0a, 0x07, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x5f, 0x62, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x06, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x42, 0x12, 0x45, 0x0a, 0x07, 0x62, 0x61, 0x6c,
+	0x61, 0x6e, 0x63, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x2b, 0xc8, 0xde, 0x1f, 0x00,
+	0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f,
+	0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73,
+	0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e, 0x74, 0x52, 0x07, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65,
 	0x12, 0x1a, 0x0a, 0x08, 0x70, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73, 0x18, 0x05, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x08, 0x70, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73, 0x12, 0x14, 0x0a, 0x05,
 	0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x6c, 0x69, 0x6d,

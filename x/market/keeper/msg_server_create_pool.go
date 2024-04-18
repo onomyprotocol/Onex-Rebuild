@@ -6,6 +6,8 @@ import (
 	"onex/x/market/types"
 	"strings"
 
+	"cosmossdk.io/math"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -38,6 +40,20 @@ func (k msgServer) CreatePool(goCtx context.Context, msg *types.MsgCreatePool) (
 	member2, _ := k.GetMember(ctx, denom1, denom2)
 
 	pool, found := k.GetPool(ctx, denom1, denom2)
+
+	if found {
+		if !member1.Balance.Equal(math.ZeroInt()) {
+			return nil, types.ErrPoolAlreadyExists
+		}
+
+		if !member2.Balance.Equal(math.ZeroInt()) {
+			return nil, types.ErrPoolAlreadyExists
+		}
+
+		if !pool.Drops.Equal(math.ZeroInt()) {
+			return nil, types.ErrPoolAlreadyExists
+		}
+	}
 
 	_ = member1
 	_ = member2

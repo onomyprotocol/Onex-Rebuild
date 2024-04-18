@@ -1,14 +1,21 @@
 syntax = "proto3";
 package onex.market;
+import "gogoproto/gogo.proto";
+import "cosmos_proto/cosmos.proto";
 
 option go_package = "onex/x/market/types";
 
+// Member defines the parameters for a member of a pair for pool.
 message Member {
-  
   string pair = 1; 
-  string denomA = 2; 
-  string denomB = 3; 
-  string balance = 4; 
+  string denom_a = 2; 
+  string denom_b = 3; 
+  // Member Balance of denom b
+  string balance = 4 [
+    (cosmos_proto.scalar)  = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable)   = false
+  ];
   string previous = 5; 
   uint64 limit = 6; 
   uint64 stop = 7; 
