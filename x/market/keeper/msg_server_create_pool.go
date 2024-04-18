@@ -37,9 +37,13 @@ func (k msgServer) CreatePool(goCtx context.Context, msg *types.MsgCreatePool) (
 
 	member2, _ := k.GetMember(ctx, denom1, denom2)
 
+	pool, found := k.GetPool(ctx, denom1, denom2)
+
 	_ = member1
 	_ = member2
 	_ = pair
+	_ = pool
+	_ = found
 	_ = ctx
 
 	return &types.MsgCreatePoolResponse{}, nil
