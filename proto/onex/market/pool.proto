@@ -1,0 +1,44 @@
+syntax = "proto3";
+package onex.market;
+import "gogoproto/gogo.proto";
+import "cosmos_proto/cosmos.proto";
+
+option go_package = "onex/x/market/types";
+
+// Pool defines the parameters for
+message Pool {
+  string pair = 1; 
+  string denom1 = 2; 
+  string denom2 = 3;
+  Volume volume1 = 4;
+  Volume volume2 = 5;
+  repeated Leader leaders = 6;
+  // Pool liquidity
+  string drops = 7 [
+    (cosmos_proto.scalar)  = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable)   = false
+  ];
+  uint64 history = 8;
+}
+
+// Leader defines the parameters for
+message Leader {
+  string address = 1;
+  // Pool liquidity
+  string drops = 7 [
+    (cosmos_proto.scalar)  = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable)   = false
+  ];
+}
+
+// Volume defines the parameters for
+message Volume {
+  string denom = 1;
+  string amount = 2 [
+    (cosmos_proto.scalar)  = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable)   = false
+  ];
+}
