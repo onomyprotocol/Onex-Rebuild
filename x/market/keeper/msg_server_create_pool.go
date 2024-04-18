@@ -55,12 +55,22 @@ func (k msgServer) CreatePool(goCtx context.Context, msg *types.MsgCreatePool) (
 		}
 	}
 
+	// Get the borrower address
+	creator, _ := sdk.AccAddressFromBech32(msg.Creator)
+
+	// All coins added to pools are deposited into the module account until redemption
+	sdkError := k.bankKeeper.SendCoinsFromAccountToModule(ctx, creator, types.ModuleName, coinPair)
+	if sdkError != nil {
+		return nil, sdkError
+	}
+
 	_ = member1
 	_ = member2
 	_ = pair
 	_ = pool
 	_ = found
 	_ = ctx
+	_ = creator
 
 	return &types.MsgCreatePoolResponse{}, nil
 }
