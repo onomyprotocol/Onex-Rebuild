@@ -31,6 +31,14 @@ func (k msgServer) CreatePool(goCtx context.Context, msg *types.MsgCreatePool) (
 	denom2 := coinPair.GetDenomByIndex(1)
 	pair := strings.Join([]string{denom1, denom2}, ",")
 
+	// Test if pool either exists and active or exists and inactive
+	// Inactive pool will be dry or have no drops
+	member1, _ := k.GetMember(ctx, denom2, denom1)
+
+	member2, _ := k.GetMember(ctx, denom1, denom2)
+
+	_ = member1
+	_ = member2
 	_ = pair
 	_ = ctx
 
