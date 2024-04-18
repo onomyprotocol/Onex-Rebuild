@@ -34,6 +34,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a create-pool tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "coinA"}, {ProtoField: "coinB"}},
 				},
+				{
+					RpcMethod:      "CreateDrop",
+					Use:            "create-drop [pair] [drops]",
+					Short:          "Send a create-drop tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "pair"}, {ProtoField: "drops"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

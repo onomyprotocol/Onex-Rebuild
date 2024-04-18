@@ -17,7 +17,10 @@ service Msg {
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams (MsgUpdateParams) returns (MsgUpdateParamsResponse);
+  // CreatePool defines an operation for creating a pool
   rpc CreatePool   (MsgCreatePool  ) returns (MsgCreatePoolResponse  );
+  // CreateDrop defines an operation for creating a drop
+  rpc CreateDrop   (MsgCreateDrop  ) returns (MsgCreateDropResponse  );
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -37,6 +40,7 @@ message MsgUpdateParams {
 // MsgUpdateParams message.
 message MsgUpdateParamsResponse {}
 
+// MsgCreatePool is a pool creation request
 message MsgCreatePool {
   option (cosmos.msg.v1.signer) = "creator";
   string creator = 1;
@@ -44,5 +48,17 @@ message MsgCreatePool {
   string coinB   = 3;
 }
 
+// MsgCreatePoolResponse defines the response structure for creating a pool
 message MsgCreatePoolResponse {}
+
+// MsgCreateDrop is a drop creation request
+message MsgCreateDrop {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string pair    = 2;
+  string drops   = 3;
+}
+
+// MsgCreateDropResponse defines the response structure for creating a drop
+message MsgCreateDropResponse {}
 

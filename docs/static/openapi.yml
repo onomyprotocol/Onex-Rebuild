@@ -13156,22 +13156,18 @@ paths:
             description: MsgUpdateParams is the Msg/UpdateParams request type.
       tags:
         - Msg
-  /onex/market/params:
-    get:
-      summary: Parameters queries the parameters of the module.
-      operationId: OnexMarketQuery_Params
+  /onex.market.Msg/CreateDrop:
+    post:
+      summary: CreateDrop defines an operation for creating a drop
+      operationId: OnexMarketMsg_CreateDrop
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
-            properties:
-              params:
-                description: params holds all the parameters of this module.
-                type: object
-            description: >-
-              QueryParamsResponse is response type for the Query/Params RPC
-              method.
+            title: >-
+              MsgCreateDropResponse defines the response structure for creating
+              a drop
         default:
           description: An unexpected error response.
           schema:
@@ -13190,16 +13186,34 @@ paths:
                     '@type':
                       type: string
                   additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              pair:
+                type: string
+              drops:
+                type: string
+            title: MsgCreateDrop is a drop creation request
       tags:
-        - Query
+        - Msg
   /onex.market.Msg/CreatePool:
     post:
+      summary: CreatePool defines an operation for creating a pool
       operationId: OnexMarketMsg_CreatePool
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
+            title: >-
+              MsgCreatePoolResponse defines the response structure for creating
+              a pool
         default:
           description: An unexpected error response.
           schema:
@@ -13231,6 +13245,7 @@ paths:
                 type: string
               coinB:
                 type: string
+            title: MsgCreatePool is a pool creation request
       tags:
         - Msg
   /onex.market.Msg/UpdateParams:
@@ -13286,6 +13301,42 @@ paths:
             description: MsgUpdateParams is the Msg/UpdateParams request type.
       tags:
         - Msg
+  /onex/market/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: OnexMarketQuery_Params
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
 definitions:
   cosmos.auth.v1beta1.MsgUpdateParams:
     type: object
@@ -20421,16 +20472,19 @@ definitions:
   onex.denom.Params:
     type: object
     description: Params defines the parameters for the module.
-  onex.market.Params:
-    type: object
-    description: Params defines the parameters for the module.
-  onex.market.QueryParamsResponse:
+  onex.market.MsgCreateDrop:
     type: object
     properties:
-      params:
-        description: params holds all the parameters of this module.
-        type: object
-    description: QueryParamsResponse is response type for the Query/Params RPC method.
+      creator:
+        type: string
+      pair:
+        type: string
+      drops:
+        type: string
+    title: MsgCreateDrop is a drop creation request
+  onex.market.MsgCreateDropResponse:
+    type: object
+    title: MsgCreateDropResponse defines the response structure for creating a drop
   onex.market.MsgCreatePool:
     type: object
     properties:
@@ -20440,8 +20494,10 @@ definitions:
         type: string
       coinB:
         type: string
+    title: MsgCreatePool is a pool creation request
   onex.market.MsgCreatePoolResponse:
     type: object
+    title: MsgCreatePoolResponse defines the response structure for creating a pool
   onex.market.MsgUpdateParams:
     type: object
     properties:
@@ -20459,3 +20515,13 @@ definitions:
     description: |-
       MsgUpdateParamsResponse defines the response structure for executing a
       MsgUpdateParams message.
+  onex.market.Params:
+    type: object
+    description: Params defines the parameters for the module.
+  onex.market.QueryParamsResponse:
+    type: object
+    properties:
+      params:
+        description: params holds all the parameters of this module.
+        type: object
+    description: QueryParamsResponse is response type for the Query/Params RPC method.
