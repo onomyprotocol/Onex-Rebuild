@@ -1,0 +1,15 @@
+syntax = "proto3";
+package onex.market;
+
+option go_package = "onex/x/market/types";
+
+message Member {
+  
+  string pair = 1; 
+  string denomA = 2; 
+  string denomB = 3; 
+  string balance = 4; 
+  string previous = 5; 
+  uint64 limit = 6; 
+  uint64 stop = 7; 
+}
