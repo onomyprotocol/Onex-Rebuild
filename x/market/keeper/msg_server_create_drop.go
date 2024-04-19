@@ -38,6 +38,14 @@ func (k msgServer) CreateDrop(goCtx context.Context, msg *types.MsgCreateDrop) (
 		return nil, types.ErrMemberNotFound
 	}
 
+	if memberA.Balance.Equal(math.ZeroInt()) {
+		return nil, types.ErrMemberBalanceZero
+	}
+
+	if memberB.Balance.Equal(math.ZeroInt()) {
+		return nil, types.ErrMemberBalanceZero
+	}
+
 	_ = memberA
 	_ = memberB
 
