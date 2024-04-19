@@ -1,0 +1,24 @@
+syntax = "proto3";
+package onex.market;
+import "gogoproto/gogo.proto";
+import "cosmos_proto/cosmos.proto";
+
+option go_package = "onex/x/market/types";
+
+// Drop is the data structure for pool drops
+message Drop {
+  uint64 uid = 1; 
+  string owner = 2; 
+  string pair = 3;
+  string drops = 4 [
+    (cosmos_proto.scalar)  = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable)   = false
+  ];
+  string product = 5 [
+    (cosmos_proto.scalar)  = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable)   = false
+  ]; 
+  bool active = 6;
+}
