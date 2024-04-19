@@ -18,3 +18,7 @@ var (
 func KeyPrefix(p string) []byte {
 	return []byte(p)
 }
+
+func UidKey() []byte {
+	return []byte("uid_market")
+}

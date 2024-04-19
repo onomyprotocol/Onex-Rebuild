@@ -1,0 +1,9 @@
+syntax = "proto3";
+package onex.market;
+
+option go_package = "onex/x/market/types";
+
+// Uid defines the current unique identifier
+message Uid {
+  uint64 count = 1; 
+}
