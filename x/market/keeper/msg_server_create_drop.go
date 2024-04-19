@@ -46,8 +46,12 @@ func (k msgServer) CreateDrop(goCtx context.Context, msg *types.MsgCreateDrop) (
 		return nil, types.ErrMemberBalanceZero
 	}
 
+	// Create the uid
+	uid := k.GetUidCount(ctx)
+
 	_ = memberA
 	_ = memberB
+	_ = uid.Count
 
 	return &types.MsgCreateDropResponse{}, nil
 }

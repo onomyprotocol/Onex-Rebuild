@@ -1,22 +1,25 @@
 package keeper
 
 import (
-	"github.com/cosmos/cosmos-sdk/runtime"
-
 	"context"
 	"onex/x/market/types"
+
+	"cosmossdk.io/math"
+	"github.com/cosmos/cosmos-sdk/runtime"
 )
 
-// GetParams get all parameters as types.Params
+// GetUidCount gets the current unique identifier
 func (k Keeper) GetUidCount(
 	ctx context.Context,
-) (uid types.Uid, found bool) {
+) (uid types.Uid) {
 	store := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	bz := store.Get(types.UidKey())
 	if bz == nil {
-		return uid, false
+		return types.Uid{
+			Count: math.OneInt().Uint64(),
+		}
 	}
 
 	k.cdc.MustUnmarshal(bz, &uid)
-	return uid, true
+	return uid
 }
